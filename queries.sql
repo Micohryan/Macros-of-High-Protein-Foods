@@ -1,91 +1,122 @@
---1. Queries
+--1a. Pescatarian Diet Foods
 SELECT *
-From macros_table
-Where diet_type = 'Vegetarian' or diet_type = 'Vegan'
+FROM MACROS_TABLE
+WHERE DIET_TYPE != 'Omnivorous'
 
---2.
+--1b. Vegetarian Diet Foods
 SELECT *
-From macros_table
-Where diet_type = 'Vegan'
+FROM MACROS_TABLE
+WHERE DIET_TYPE = 'Vegetarian'
+	OR DIET_TYPE = 'Vegan'
 
---3.
+--1c. Vegan Diet Foods
 SELECT *
-From macros_table
-Order BY proteins_100g DESC
+FROM MACROS_TABLE
+WHERE DIET_TYPE = 'Vegan'
+
+--2a. Top Protein Foods for Omnivorous
+SELECT *
+FROM MACROS_TABLE
+ORDER BY PROTEINS_100G DESC
+
+--2b. Top Protein Foods for Vegetarians
+SELECT *
+FROM MACROS_TABLE
+WHERE DIET_TYPE = 'Vegetarian'
+	OR DIET_TYPE = 'Vegan'
+ORDER BY PROTEINS_100G DESC
+
+--2c. Top Protein Foods for Vegan
+SELECT *
+FROM MACROS_TABLE
+WHERE DIET_TYPE = 'Vegan'
+ORDER BY PROTEINS_100G DESC
+
+--2d. Top Protein for Pescatarian
+SELECT *
+FROM MACROS_TABLE
+WHERE DIET_TYPE != 'Omnivorous'
+ORDER BY PROTEINS_100G DESC
+
+--3a.
+-- Diet avg of Veggie
+SELECT AVG(PROTEINS_100G) AS AVG_PROTEIN_IN_DIET,
+	AVG(FAT_100G) AS AVG_FATS_IN_DIET,
+	AVG(CARBOHYDRATES_100G) AS AVG_CARBS_IN_DIET,
+	AVG(ENERGY_100G) AS AVG_CALORIES_IN_DIET
+FROM MACROS_TABLE
+WHERE DIET_TYPE = 'Vegetarian'
+	OR DIET_TYPE = 'Vegan'
+
+--3b.
+-- Diet avg of Vegan
+SELECT AVG(PROTEINS_100G) AS AVG_PROTEIN_IN_DIET,
+	AVG(FAT_100G) AS AVG_FATS_IN_DIET,
+	AVG(CARBOHYDRATES_100G) AS AVG_CARBS_IN_DIET,
+	AVG(ENERGY_100G) AS AVG_CALORIES_IN_DIET
+FROM MACROS_TABLE
+WHERE DIET_TYPE = 'Vegan'
+
+--3c.
+-- Diet avg of Pescatarian
+SELECT AVG(PROTEINS_100G) AS AVG_PROTEIN_IN_DIET,
+	AVG(FAT_100G) AS AVG_FATS_IN_DIET,
+	AVG(CARBOHYDRATES_100G) AS AVG_CARBS_IN_DIET,
+	AVG(ENERGY_100G) AS AVG_CALORIES_IN_DIET
+FROM MACROS_TABLE
+WHERE DIET_TYPE != 'Omnivorous'
+
+--3d.
+--Diet avg of all foods
+SELECT AVG(PROTEINS_100G) AS AVG_PROTEIN_IN_DIET,
+	AVG(FAT_100G) AS AVG_FATS_IN_DIET,
+	AVG(CARBOHYDRATES_100G) AS AVG_CARBS_IN_DIET,
+	AVG(ENERGY_100G) AS AVG_CALORIES_IN_DIET
+FROM MACROS_TABLE
 
 --4.
-SELECT *
-From macros_table
-Where diet_type = 'Vegetarian' or diet_type = 'Vegan'
-Order BY proteins_100g DESC
+-- Percent_energy of all foods and Omnivorous
+SELECT FOOD_NAME,
+	(PROTEINS_100G / ENERGY_100G) AS PERCENT_ENERGY
+FROM MACROS_TABLE
+ORDER BY PERCENT_ENERGY DESC
 
---5a.
--- Diet avg of Veggie
-SELECT AVG(proteins_100g) AS avg_protein_in_diet
-From macros_table
-WHERE diet_type = 'Vegetarian' or diet_type = 'Vegan'
+--5.
+-- Food with most carbs
+SELECT FOOD_NAME,
+	CARBOHYDRATES_100G
+FROM MACROS_TABLE
+ORDER BY CARBOHYDRATES_100G DESC
 
---5b.
--- Diet avg of Vegan
-SELECT AVG(proteins_100g) AS avg_protein_in_diet
-From macros_table
-WHERE diet_type = 'Vegan'
-
---5c.
---Diet avg of all foods
-SELECT AVG(proteins_100g) AS avg_protein_in_diet
-From macros_table
-
---6a.
--- Avg calories in Vegetarian Diet
-SELECT diet_type, AVG(energy_100g) AS avg_calories_in_diet
-From macros_table
-WHERE diet_type = 'Vegetarian' or diet_type = 'Vegan'
-
---6b.
--- Avg calories in Vegan Diet
-SELECT diet_type, AVG(energy_100g) AS avg_calories_in_diet
-From macros_table
-WHERE diet_type = 'Vegan'
-
---6c.
---Avg calories in Omnivorous Diet
-SELECT diet_type, AVG(energy_100g) AS avg_calories_in_diet
-From macros_table
+--6.
+-- Food with most Fat
+SELECT FOOD_NAME,
+	FAT_100G
+FROM MACROS_TABLE
+ORDER BY FAT_100G DESC
 
 --7.
-SELECT food_name, (proteins_100g/energy_100g) AS percent_energy
-From macros_table
-Order BY percent_energy Desc
+--Macros of each food Group
+SELECT CATEGORY_NAME,
+	AVG(PROTEINS_100G) AS AVG_PROTEIN_IN_DIET,
+	AVG(FAT_100G) AS AVG_FATS_IN_DIET,
+	AVG(CARBOHYDRATES_100G) AS AVG_CARBS_IN_DIET,
+	AVG(ENERGY_100G) AS AVG_CALORIES_IN_DIET
+FROM MACROS_TABLE
+GROUP BY CATEGORY_NAME
 
 --8.
-SELECT food_name, carbohydrates_100g
-From macros_table
-Order BY carbohydrates_100g DESC
+-- Food group with the highest Calories
+SELECT CATEGORY_NAME,
+	AVG(ENERGY_100G) AS AVG_CALORIES_PER_100G
+FROM MACROS_TABLE
+GROUP BY CATEGORY_NAME
+ORDER BY AVG_CALORIES_PER_100G DESC
 
 --9.
-SELECT food_name, fat_100g
-From macros_table
-Order BY fat_100g DESC
-
---10.
-SELECT food_name, energy_100g AS Calories_per_100g
-From macros_table
-Order BY Calories_per_100g DESC
-
---11.
-SELECT AVG(energy_100g) AS avg_calories_per_100g, category_name
-From macros_table
-Group BY category_name
-
---12.
-SELECT category_name, AVG(energy_100g) AS avg_calories_per_100g
-From macros_table
-Group BY category_name
-Order By avg_calories_per_100g DESC
-
---13.
-SELECT category_name, AVG(proteins_100g) AS avg_proteins_per_100g
-From macros_table
-Group BY category_name
-Order By avg_proteins_per_100g DESC
+-- Food group with highest Protein
+SELECT CATEGORY_NAME,
+	AVG(PROTEINS_100G) AS AVG_PROTEINS_PER_100G
+FROM MACROS_TABLE
+GROUP BY CATEGORY_NAME
+ORDER BY AVG_PROTEINS_PER_100G DESC
