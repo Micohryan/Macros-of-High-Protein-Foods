@@ -34,6 +34,6 @@ I used Excel for my data cleaning process since the overall dataset was small. O
 I then downloaded the dataset into a CSV file and used the Data Script found in the repository that uploads the data into my local PostgreSQL database. I then used PGAdmin 4 a management tool for PostgreSQL to transform my data and find answers to the questions above. 
 
 ## Visualization 
-I used PowerBI in order to visualize my data.
+I used PowerBI in order to visualize my data. You can find these Visualizations in the Visualization folder where you can view the powerbi file to interact with the data or just view the pdf file if you want the general gist of it.
 
 ## Files in Repository
