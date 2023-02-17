@@ -22,10 +22,10 @@ The dataset was pretty new being published around November. The author obtained 
 
 ## Questions
 
-1. Which foods had the highest protein content?
-2. Which foods have the highest protein to calorie ratio?
-3. Are there any significant difference between Macros and Calories between Diet Types
-4. What are the top foods that have the highest percentage of their calories made up of protein.
+1. Which food Groups had the highest protein content?
+2. Which food Groups have the lowest calorie content?
+3. Which foods have the highest protein to calorie ratio?
+4. Are there any significant difference between Macros and Calories between Diet Types?
 
 ## Data Cleaning
 I used Excel for my data cleaning process since the overall dataset was small. Overall the data set was already pretty clean as there were no missing data in any of the rows. While looking at the dataset I realized in the category_name while looking at all the unqiue values that some foods I felt were classified too specifically. For example there was only one yoghurt items and a few milk items. I felt that some of the rows could be categorized more generally. I organized any foods that felt to specific that also fell into Legumes, Dairy, and Seafood into these categories. I also decided that in the Diet types I wanted to add was Pescatarian so I looked for foods that were categorized as Seafood and converted their diet types to Pescatarian.
