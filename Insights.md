@@ -15,5 +15,8 @@
 ## General Recommendations
 * If we want to focus primarily on losing weight we should look at food that is low in calories. Food groups such as Vegetables, Soy Products, and Vegan Products.
 
-* In working out there 
+* In working out we usually want to hit a protein target in order to reduce the risk of losing muscle while on a diet. Individuals with these goals should focus on foods that are have the best protein to calorie ratio. 
+
+* Those with Vegan and Vegetarian Diets may have a harder time hitting protein target due to the fact that a lot of their high protein foods have a lot of calories in them.
+
 
