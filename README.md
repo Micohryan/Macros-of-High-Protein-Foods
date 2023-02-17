@@ -37,3 +37,8 @@ I then downloaded the dataset into a CSV file and used the Data Script found in 
 I used PowerBI in order to visualize my data. You can find these Visualizations in the Visualization folder where you can view the powerbi file to interact with the data or just view the pdf file if you want the general gist of it.
 
 ## Files in Repository
+1. Report Generalization of the Analysis.
+2. Visualizations PowerBi Report and Pdf files
+3. CSV_To_PSQL_Table.py Script to convert CSV file from Kaggle to local PostgreSQL database
+4. Insights Findings from the data.
+5. Queries.sql The queries that were done to transform the data to obtain answers to the questions and make creating visualizations on powerbi easier
